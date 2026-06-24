@@ -5,7 +5,7 @@ import WordReveal from "./WordReveal";
 export default function ContactSection() {
   return (
     <section id="contact" style={{ padding: "8rem 0", width: "100%", borderTop: "1px solid rgba(245,245,245,0.06)" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import WordReveal from "./WordReveal";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 // DECISION: заменить на реальные отзывы когда появятся
 const reviews = [
@@ -51,9 +52,10 @@ function Stars({ count }: { count: number }) {
 }
 
 export default function TestimonialsSection() {
+  const isMobile = useIsMobile();
   return (
     <section style={{ padding: "7rem 0", position: "relative", zIndex: 1, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
 
         {/* Header */}
         <div style={{ marginBottom: "4rem" }}>
@@ -66,7 +68,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Grid 2×2 */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: 16 }}>
           {reviews.map((r, i) => (
             <motion.div
               key={i}

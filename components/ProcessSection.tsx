@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import WordReveal from "./WordReveal";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const steps = [
   { num: "01", title: "Бриф", badge: "Бесплатно", time: "20–30 мин", desc: "Обсуждаем задачу, аудиторию, референсы и сроки в Telegram. Без обязательств.", color: "#6E7BFF" },
@@ -10,9 +11,10 @@ const steps = [
 ];
 
 export default function ProcessSection() {
+  const isMobile = useIsMobile();
   return (
     <section id="process" style={{ padding: "7rem 0", width: "100%", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
 
         <div style={{ marginBottom: "4rem" }}>
           <motion.p
@@ -24,7 +26,7 @@ export default function ProcessSection() {
         </div>
 
         {/* Steps 2×2 grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16 }}>
           {steps.map((s, i) => (
             <motion.div key={s.num}
               initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const stats = [
   { value: 27, suffix: "+", label: "проектов\nсдано" },
@@ -37,6 +38,7 @@ function Counter({ target, suffix, active }: { target: number; suffix: string; a
 export default function StatsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const el = ref.current;
@@ -48,8 +50,8 @@ export default function StatsSection() {
 
   return (
     <div ref={ref} style={{ padding: "0 0 7rem", position: "relative", zIndex: 1 }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2 }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(4,1fr)", gap: 2 }}>
           {stats.map((s, i) => (
             <div key={i} style={{ padding: "36px 28px", border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)", display: "flex", flexDirection: "column", gap: 12 }}>
               {/* Accent top line */}

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { motion, AnimatePresence } from "framer-motion";
 import WordReveal from "./WordReveal";
 
@@ -56,11 +57,12 @@ const S = {
   inner: { maxWidth: 1100, margin: "0 auto", padding: "0 48px" } as React.CSSProperties,
   label: { fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: "0.3em", color: "#6E7BFF", textTransform: "uppercase" as const, marginBottom: 16 },
   heading: { fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: "clamp(2rem,4vw,3.2rem)", letterSpacing: "-0.03em", lineHeight: 1.05, color: "#F5F5F5" },
-  grid: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 } as React.CSSProperties,
+  grid: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 } as React.CSSProperties, // overridden below
 };
 
 export default function ServicesSection() {
   const [active, setActive] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   return (
     <section id="services" style={S.section}>
@@ -79,7 +81,7 @@ export default function ServicesSection() {
           <WordReveal text="Что я делаю" />
         </motion.div>
 
-        <div style={S.grid}>
+        <div style={{ ...S.grid, gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)" }}>
           {services.map((s, i) => (
             <motion.div
               key={s.num}

@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import WordReveal from "./WordReveal";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const rows = [
   { category: "Сайты",         items: [{ name: "Лендинг", price: "30 000 ₽" }, { name: "Многостраничный", price: "50 000 ₽" }, { name: "Подписка Лайт", price: "7–9 тыс. ₽/мес" }, { name: "Подписка Бизнес", price: "12–15 тыс. ₽/мес" }] },
@@ -9,9 +10,10 @@ const rows = [
 ];
 
 export default function BottomPricing() {
+  const isMobile = useIsMobile();
   return (
     <section style={{ padding: "7rem 0", position: "relative", zIndex: 1, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
 
         <div style={{ marginBottom: "4rem" }}>
           <motion.p
@@ -30,7 +32,7 @@ export default function BottomPricing() {
         </div>
 
         {/* Three columns */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: 2 }}>
           {rows.map((col, ci) => (
             <motion.div
               key={col.category}

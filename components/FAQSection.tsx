@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import WordReveal from "./WordReveal";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const faqs = [
   {
@@ -32,10 +33,11 @@ const faqs = [
 
 export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   return (
     <section style={{ padding: "7rem 0", position: "relative", zIndex: 1, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
 
         <div style={{ marginBottom: "4rem" }}>
           <motion.p
@@ -46,7 +48,7 @@ export default function FAQSection() {
           <WordReveal text="Частые вопросы" />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 2 }}>
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
