@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #0A0A0B;
+  --fg: #F5F5F5;
+  --fg-muted: #8A8A90;
+  --accent-from: #6E7BFF;
+  --accent-to: #B66EFF;
+  --hairline: rgba(245, 245, 245, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(110, 123, 255, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(110, 123, 255, 0.4);
+}
+
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hairline {
+  border: 1px solid var(--hairline);
+}
+
+.hairline-top {
+  border-top: 1px solid var(--hairline);
+}
+
+.hairline-bottom {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.glow-accent {
+  box-shadow: 0 0 30px rgba(110, 123, 255, 0.15), 0 0 60px rgba(182, 110, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Section padding */
+  section { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* All inner containers */
+  [style*="maxWidth: 1100"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* 3-col → 1-col grids (services, pricing, stats) */
+  [style*="gridTemplateColumns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 2-col → 1-col grids (process, testimonials, faq) */
+  [style*="gridTemplateColumns: repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="gridTemplateColumns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="gridTemplateColumns: \"1fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats 4-col → 2-col */
+  [style*="repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Navbar links — hide on mobile (burger works) */
+  nav .desktop-links { display: none !important; }
+
+  /* Sticky CTA — smaller on mobile */
+  .sticky-cta { bottom: 16px !important; right: 16px !important; }
+
+  /* Music player — smaller */
+  .music-btn { bottom: 16px !important; left: 16px !important; }
+
+  /* Hero h1 */
+  h1 { font-size: clamp(2rem, 10vw, 3rem) !important; }
+
+  /* Portfolio horizontal scroll — narrower cards */
+  [style*="width: 320px"] { width: 260px !important; }
+
+  /* Process 2x2 → 1 col */
+  [style*="gridTemplateColumns: \"1fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+}
