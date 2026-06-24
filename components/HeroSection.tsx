@@ -89,7 +89,7 @@ export default function HeroSection() {
           }}>
             Смотреть услуги
           </a>
-          <a href="https://t.me/hazov_visuals" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://t.me/hazov_visuals_bot" target="_blank" rel="noopener noreferrer" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "15px 24px",
             fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase",

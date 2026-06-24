@@ -74,7 +74,7 @@ export default function ProcessSection() {
             <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: "1.15rem", letterSpacing: "-0.02em", color: "#F5F5F5" }}>Начнём с брифа?</p>
             <p style={{ fontSize: 13, color: "#8A8A90", marginTop: 4 }}>Это бесплатно и ни к чему не обязывает</p>
           </div>
-          <a href="https://t.me/hazov_visuals" target="_blank" rel="noopener noreferrer"
+          <a href="https://t.me/hazov_visuals_bot" target="_blank" rel="noopener noreferrer"
             style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#F5F5F5", textDecoration: "none", border: "1px solid rgba(110,123,255,0.4)", background: "rgba(110,123,255,0.08)", flexShrink: 0 }}>
             Написать в Telegram →
           </a>

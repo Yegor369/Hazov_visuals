@@ -58,7 +58,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://t.me/hazov_visuals"
+            href="https://t.me/hazov_visuals_bot"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-mono tracking-widest uppercase px-4 py-2 border border-[rgba(110,123,255,0.4)] text-[#6E7BFF] hover:bg-[rgba(110,123,255,0.08)] transition-all duration-200"
@@ -102,7 +102,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://t.me/hazov_visuals"
+                href="https://t.me/hazov_visuals_bot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-mono tracking-widest uppercase text-[#6E7BFF]"

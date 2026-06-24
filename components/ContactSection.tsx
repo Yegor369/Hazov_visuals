@@ -31,7 +31,7 @@ export default function ContactSection() {
               }
             `}</style>
             <motion.a
-              href="https://t.me/hazov_visuals"
+              href="https://t.me/hazov_visuals_bot"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(110,123,255,0.35)" }}

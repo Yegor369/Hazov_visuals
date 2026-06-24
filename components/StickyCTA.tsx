@@ -15,7 +15,7 @@ export default function StickyCTA() {
     <AnimatePresence>
       {visible && (
         <motion.a
-          href="https://t.me/hazov_visuals"
+          href="https://t.me/hazov_visuals_bot"
           target="_blank"
           rel="noopener noreferrer"
           initial={{ opacity: 0, y: 20, scale: 0.95 }}

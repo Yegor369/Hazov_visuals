@@ -112,7 +112,7 @@ export default function FAQSection() {
           <p style={{ fontSize: 14, color: "#8A8A90" }}>
             Не нашли ответ? Напишите — отвечу в течение часа.
           </p>
-          <a href="https://t.me/hazov_visuals" target="_blank" rel="noopener noreferrer"
+          <a href="https://t.me/hazov_visuals_bot" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#6E7BFF", textDecoration: "none", display: "flex", alignItems: "center", gap: 6 }}>
             Задать вопрос →
           </a>

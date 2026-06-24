@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import WordReveal from "./WordReveal";
 
-const TG = "https://t.me/hazov_visuals";
+const TG = "https://t.me/hazov_visuals_bot";
 
 const services = [
   {

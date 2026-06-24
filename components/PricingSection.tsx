@@ -113,7 +113,7 @@ export default function PricingSection() {
           <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: "rgba(255,255,255,0.25)", lineHeight: 1.7 }}>
             Цены ориентировочные — финал фиксируется в смете до старта.<br/>Бриф бесплатный.
           </p>
-          <a href="https://t.me/hazov_visuals" target="_blank" rel="noopener noreferrer"
+          <a href="https://t.me/hazov_visuals_bot" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#6E7BFF", textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
             Получить смету →
           </a>
