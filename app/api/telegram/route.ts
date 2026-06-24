@@ -67,46 +67,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // — Обычное сообщение (ответ с именем и телефоном)
+    // — Любое текстовое сообщение (не команда)
     if (update.message?.text && update.message.text !== "/start") {
-      const { chat, from, text, reply_to_message } = update.message;
+      const { chat, from, text } = update.message;
 
-      // Проверяем — это ответ на наш запрос контактов
-      const isLeadReply =
-        reply_to_message?.text?.includes("имя и номер телефона") ||
-        reply_to_message?.text?.includes("Пример: Иван");
+      const userName = from.first_name
+        ? `${from.first_name}${from.last_name ? " " + from.last_name : ""}`
+        : "Неизвестно";
+      const tgUsername = from.username ? `@${from.username}` : "нет username";
 
-      if (isLeadReply) {
-        const userName = from.first_name
-          ? `${from.first_name}${from.last_name ? " " + from.last_name : ""}`
-          : "Неизвестно";
-        const tgUsername = from.username ? `@${from.username}` : "нет username";
+      // Уведомление владельцу
+      await sendMessage(
+        OWNER_CHAT_ID,
+        `🔥 <b>Новая заявка!</b>\n\n` +
+          `👤 ${userName} (${tgUsername})\n` +
+          `💬 ${text}\n` +
+          `🆔 <a href="tg://user?id=${chat.id}">Ответить</a>`
+      );
 
-        // Узнаём услугу из предыдущего сообщения (если есть)
-        let service = "не указана";
-        for (const [key, label] of Object.entries(SERVICE_LABELS)) {
-          if (reply_to_message?.text?.includes(label)) {
-            service = label;
-            break;
-          }
-        }
-
-        // Уведомление владельцу
-        await sendMessage(
-          OWNER_CHAT_ID,
-          `🔥 <b>Новая заявка!</b>\n\n` +
-            `👤 Имя в TG: ${userName} (${tgUsername})\n` +
-            `💬 Написал: ${text}\n` +
-            `📌 Услуга: ${service}\n` +
-            `🆔 chat_id: ${chat.id}`
-        );
-
-        // Подтверждение клиенту
-        await sendMessage(
-          chat.id,
-          `✅ Заявка принята! Свяжусь с тобой в скором времени.`
-        );
-      }
+      // Подтверждение клиенту
+      await sendMessage(
+        chat.id,
+        `✅ Заявка принята! Свяжусь с тобой в скором времени.`
+      );
     }
 
     return NextResponse.json({ ok: true });
