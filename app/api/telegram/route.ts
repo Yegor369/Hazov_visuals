@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
         // Подтверждение клиенту
         await sendMessage(
           chat.id,
-          `✅ Заявка принята! Свяжусь с тобой в ближайшее время.\n\nПока можешь посмотреть наши работы: <a href="https://t.me/hazov_visuals">@hazov_visuals</a>`
+          `✅ Заявка принята! Свяжусь с тобой в скором времени.`
         );
       }
     }
