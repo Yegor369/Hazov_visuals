@@ -34,6 +34,15 @@ export async function POST(req: NextRequest) {
     if (update.message?.text === "/start") {
       const { chat, from } = update.message;
       const name = from.first_name || "друг";
+      const tgUsername = from.username ? `@${from.username}` : "нет username";
+
+      // Уведомление владельцу о новом старте
+      await sendMessage(
+        OWNER_CHAT_ID,
+        `👀 <b>Новый пользователь зашёл в бот!</b>\n\n` +
+          `👤 ${name} (${tgUsername})\n` +
+          `🆔 <a href="tg://user?id=${chat.id}">Открыть чат</a>`
+      );
 
       await sendMessage(
         chat.id,
