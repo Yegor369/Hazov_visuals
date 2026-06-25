@@ -344,7 +344,7 @@ export default function PlanetScene() {
 
   return (
     <Canvas
-      dpr={isMobile ? [1, 1.5] : [1, 2]}
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0, 7], fov: 50 }}
       gl={{ antialias: !isMobile, alpha: true }}
       style={{ position: "absolute", inset: 0 }}

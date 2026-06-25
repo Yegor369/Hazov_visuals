@@ -53,6 +53,15 @@ export default function ContactSection() {
               обычно отвечаю за 2 часа · @hazov_visuals
             </p>
           </div>
+
+          {/* Согласие на обработку данных */}
+          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.2)", letterSpacing: "0.04em", maxWidth: 420, textAlign: "center", lineHeight: 1.7 }}>
+            Нажимая кнопку, вы соглашаетесь с{" "}
+            <a href="/privacy" style={{ color: "rgba(110,123,255,0.6)", textDecoration: "none" }}>
+              политикой конфиденциальности
+            </a>{" "}
+            и даёте согласие на обработку персональных данных
+          </p>
         </motion.div>
       </div>
     </section>

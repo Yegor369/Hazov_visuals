@@ -1,3 +1,4 @@
+import Preloader from "@/components/Preloader";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import HeroSection from "@/components/HeroSection";
@@ -20,6 +21,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 export default function Home() {
   return (
     <main style={{ background: "#0A0A0B", minHeight: "100vh", width: "100%", overflowX: "hidden", position: "relative" }}>
+      <Preloader />
       <FilmGrain />
       <CustomCursor />
       <StickyCTA />

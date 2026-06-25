@@ -17,18 +17,24 @@ export default function FilmGrain() {
     canvas.width = W;
     canvas.height = H;
 
+    // Pre-generate noise frames once — cycling them is free vs generating every frame
+    const POOL = 10;
+    const pool: ImageData[] = [];
+    for (let f = 0; f < POOL; f++) {
+      const img = ctx.createImageData(W, H);
+      const data = img.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const v = Math.random() * 255;
+        data[i] = data[i+1] = data[i+2] = v;
+        data[i+3] = Math.random() * 28;
+      }
+      pool.push(img);
+    }
+
     const draw = () => {
       frame++;
-      // New noise every 2 frames for cinematic flicker
       if (frame % 2 === 0) {
-        const img = ctx.createImageData(W, H);
-        const data = img.data;
-        for (let i = 0; i < data.length; i += 4) {
-          const v = Math.random() * 255;
-          data[i] = data[i+1] = data[i+2] = v;
-          data[i+3] = Math.random() * 28; // very subtle alpha
-        }
-        ctx.putImageData(img, 0, 0);
+        ctx.putImageData(pool[Math.floor(frame / 2) % POOL], 0, 0);
       }
       raf = requestAnimationFrame(draw);
     };

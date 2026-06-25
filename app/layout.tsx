@@ -7,6 +7,26 @@ export const metadata: Metadata = {
   icons: {
     icon: "/assets/logo-mark.png",
   },
+  openGraph: {
+    title: "HAZOV VISUALS — видео, сайты, боты",
+    description: "Делаю так, чтобы вас заметили. Видео, сайты, Telegram-боты — на нейросетях, быстро.",
+    url: "https://hazovvisuals.ru",
+    siteName: "HAZOV VISUALS",
+    images: [
+      {
+        url: "https://hazovvisuals.ru/assets/logo.png",
+        alt: "HAZOV VISUALS",
+      },
+    ],
+    locale: "ru_RU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HAZOV VISUALS — видео, сайты, боты",
+    description: "Делаю так, чтобы вас заметили. Видео, сайты, Telegram-боты — на нейросетях, быстро.",
+    images: ["https://hazovvisuals.ru/assets/logo.png"],
+  },
 };
 
 export default function RootLayout({
