@@ -16,7 +16,6 @@ import Footer from "@/components/Footer";
 import SectionBackground from "@/components/SectionBackground";
 import CustomCursor from "@/components/CustomCursor";
 import StickyCTA from "@/components/StickyCTA";
-import MusicPlayer from "@/components/MusicPlayer";
 
 export default function Home() {
   return (
@@ -25,7 +24,6 @@ export default function Home() {
       <FilmGrain />
       <CustomCursor />
       <StickyCTA />
-      <MusicPlayer />
       <ScrollProgress />
       <SectionBackground />
       <div style={{ position: "relative", zIndex: 1 }}>
