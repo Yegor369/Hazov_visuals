@@ -34,8 +34,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "HAZOV VISUALS",
+    description: "Видео, сайты, Telegram-боты для бизнеса. Быстро, на нейросетях.",
+    url: "https://hazovvisuals.ru",
+    telephone: "",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Москва",
+      addressCountry: "RU",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      url: "https://t.me/hazov_visuals_bot",
+    },
+    sameAs: ["https://t.me/hazov_visuals"],
+    priceRange: "₽₽",
+  };
+
   return (
     <html lang="ru" style={{ width: "100%", overflowX: "hidden" }}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body style={{ background: "#0A0A0B", width: "100%", overflowX: "hidden", minHeight: "100vh" }}>
         {children}
       </body>
