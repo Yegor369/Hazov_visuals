@@ -151,17 +151,51 @@ export default function BottomPricing() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
-          style={{ marginTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}
+          style={{ marginTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}
         >
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: "rgba(255,255,255,0.2)", letterSpacing: "0.05em" }}>
-            Бриф — бесплатно. Предоплата 50% после согласования сметы.
+          <motion.a
+            href="https://t.me/hazov_visuals_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.03, boxShadow: "0 0 60px rgba(110,123,255,0.3)" }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 14,
+              padding: "20px 52px",
+              background: "linear-gradient(135deg, rgba(110,123,255,0.15), rgba(182,110,255,0.1))",
+              border: "1px solid rgba(110,123,255,0.4)",
+              textDecoration: "none",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Блик */}
+            <span style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(to right, transparent, rgba(110,123,255,0.6), transparent)" }} />
+
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#6E7BFF">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.607c-.153.676-.555.84-1.123.522l-3.1-2.284-1.497 1.44c-.165.165-.304.304-.624.304l.222-3.156 5.75-5.193c.25-.222-.054-.345-.387-.123L7.32 14.56l-3.036-.948c-.66-.206-.673-.66.138-.977l11.87-4.576c.549-.2 1.03.135.851.977l-.581-.788z"/>
+            </svg>
+            <span style={{
+              fontFamily: "'JetBrains Mono',monospace",
+              fontSize: 12, letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              background: "linear-gradient(90deg, #8A94FF, #C084FC)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontWeight: 600,
+            }}>
+              Получить смету бесплатно
+            </span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A94FF" strokeWidth="1.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </motion.a>
+
+          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.18)", letterSpacing: "0.05em", textAlign: "center" }}>
+            Бриф — бесплатно · Предоплата 50% после согласования сметы
           </p>
-          <a href="https://t.me/hazov_visuals_bot" target="_blank" rel="noopener noreferrer"
-            style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#6E7BFF", textDecoration: "none", display: "flex", alignItems: "center", gap: 6 }}>
-            Получить смету →
-          </a>
         </motion.div>
 
       </div>
