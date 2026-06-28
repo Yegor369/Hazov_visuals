@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HAZOV VISUALS — видео, сайты, боты",
     description: "Делаю так, чтобы вас заметили. Видео, сайты, Telegram-боты — на нейросетях, быстро.",
-    url: "https://hazovvisuals.ru",
+    url: "https://hazovvisual.ru",
     siteName: "HAZOV VISUALS",
     images: [
       {
-        url: "https://hazovvisuals.ru/assets/logo.png",
+        url: "https://hazovvisual.ru/assets/logo.png",
         alt: "HAZOV VISUALS",
       },
     ],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HAZOV VISUALS — видео, сайты, боты",
     description: "Делаю так, чтобы вас заметили. Видео, сайты, Telegram-боты — на нейросетях, быстро.",
-    images: ["https://hazovvisuals.ru/assets/logo.png"],
+    images: ["https://hazovvisual.ru/assets/logo.png"],
   },
 };
 
@@ -39,7 +39,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: "HAZOV VISUALS",
     description: "Видео, сайты, Telegram-боты для бизнеса. Быстро, на нейросетях.",
-    url: "https://hazovvisuals.ru",
+    url: "https://hazovvisual.ru",
     telephone: "",
     address: {
       "@type": "PostalAddress",

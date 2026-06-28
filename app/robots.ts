@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [],
     },
-    sitemap: "https://hazovvisuals.ru/sitemap.xml",
+    sitemap: "https://hazovvisual.ru/sitemap.xml",
   };
 }
