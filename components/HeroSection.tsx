@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const PlanetScene = dynamic(() => import("./PlanetScene"), {
   ssr: false,
@@ -13,6 +14,7 @@ const PlanetScene = dynamic(() => import("./PlanetScene"), {
 });
 
 export default function HeroSection() {
+  const isMobile = useIsMobile();
   return (
     <section style={{ position: "relative", width: "100%", height: "100svh", minHeight: 620 }}>
       <PlanetScene />
@@ -109,13 +111,29 @@ export default function HeroSection() {
         transition={{ delay: 1.6, duration: 0.6 }}
         style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          style={{ width: 20, height: 34, border: "1px solid rgba(255,255,255,0.2)", borderRadius: 10, display: "flex", justifyContent: "center", paddingTop: 6 }}
-        >
-          <div style={{ width: 3, height: 7, borderRadius: 2, background: "linear-gradient(to bottom, #6E7BFF, #B66EFF)" }} />
-        </motion.div>
+        {isMobile ? (
+          /* Палец для мобильного */
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5">
+              <path d="M9 11V6a2 2 0 0 1 4 0v5"/>
+              <path d="M13 11V9a2 2 0 0 1 4 0v2"/>
+              <path d="M17 11v-1a2 2 0 0 1 4 0v4a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6v-1a2 2 0 0 1 2-2h2"/>
+              <path d="M9 11V8a2 2 0 0 0-2-2H5"/>
+            </svg>
+          </motion.div>
+        ) : (
+          /* Мышка для десктопа */
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 20, height: 34, border: "1px solid rgba(255,255,255,0.2)", borderRadius: 10, display: "flex", justifyContent: "center", paddingTop: 6 }}
+          >
+            <div style={{ width: 3, height: 7, borderRadius: 2, background: "linear-gradient(to bottom, #6E7BFF, #B66EFF)" }} />
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -57,6 +58,7 @@ const items = [
 export default function PortfolioSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   const scroll = (dir: number) => {
     if (!trackRef.current) return;
@@ -183,7 +185,16 @@ export default function PortfolioSection() {
               exit={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               onClick={e => e.stopPropagation()}
-              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", width: "min(95vw, 1000px)", height: "min(85vh, 620px)", border: "1px solid rgba(255,255,255,0.08)", overflow: "hidden", background: "#0D0D0F" }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                gridTemplateRows: isMobile ? "45vh auto" : "1fr",
+                width: isMobile ? "100vw" : "min(95vw, 1000px)",
+                height: isMobile ? "90vh" : "min(85vh, 620px)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                overflow: "hidden",
+                background: "#0D0D0F",
+              }}
             >
               {/* Фото */}
               <div style={{ position: "relative", overflow: "hidden" }}>
@@ -192,30 +203,35 @@ export default function PortfolioSection() {
                   alt={items[active].title}
                   fill
                   style={{ objectFit: "cover", filter: "brightness(0.8) contrast(1.05)" }}
-                  sizes="50vw"
+                  sizes="100vw"
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 60%, #0D0D0F)" }} />
+                <div style={{ position: "absolute", inset: 0, background: isMobile ? "linear-gradient(to bottom, transparent 60%, #0D0D0F)" : "linear-gradient(to right, transparent 60%, #0D0D0F)" }} />
 
                 {/* Счётчик */}
-                <div style={{ position: "absolute", top: 20, left: 20, fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: "0.15em" }}>
+                <div style={{ position: "absolute", top: 16, left: 16, fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: "0.15em" }}>
                   {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
                 </div>
+
+                {/* Крестик закрыть — всегда виден */}
+                <button onClick={close} style={{ position: "absolute", top: 12, right: 12, width: 36, height: 36, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer", color: "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 2, backdropFilter: "blur(8px)" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                  </svg>
+                </button>
               </div>
 
               {/* Текст */}
-              <div style={{ padding: "48px 40px", display: "flex", flexDirection: "column", justifyContent: "space-between", overflowY: "auto" }}>
+              <div style={{ padding: isMobile ? "20px 20px 24px" : "48px 40px", display: "flex", flexDirection: "column", justifyContent: "space-between", overflowY: "auto" }}>
                 <div>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 32 }}>
-                    <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "#6E7BFF", letterSpacing: "0.25em", textTransform: "uppercase" }}>
-                      {items[active].type} · {items[active].year}
-                    </p>
-                  </div>
+                  <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "#6E7BFF", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: isMobile ? 10 : 20 }}>
+                    {items[active].type} · {items[active].year}
+                  </p>
 
-                  <h2 style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", color: "#F5F5F5", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 24 }}>
+                  <h2 style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: isMobile ? "1.4rem" : "clamp(1.6rem, 2.5vw, 2.2rem)", color: "#F5F5F5", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: isMobile ? 12 : 24 }}>
                     {items[active].title}
                   </h2>
 
-                  <p style={{ fontSize: 14, color: "#8A8A90", lineHeight: 1.8, marginBottom: 32 }}>
+                  <p style={{ fontSize: 14, color: "#8A8A90", lineHeight: 1.7, marginBottom: isMobile ? 16 : 32 }}>
                     {items[active].description}
                   </p>
 
@@ -229,7 +245,7 @@ export default function PortfolioSection() {
                 </div>
 
                 {/* Навигация */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 40, paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: isMobile ? 20 : 40, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                   <div style={{ display: "flex", gap: 8 }}>
                     {[{ fn: prev, icon: "M19 12H5M12 5l-7 7 7 7" }, { fn: next, icon: "M5 12h14M12 5l7 7-7 7" }].map(({ fn, icon }, i) => (
                       <button key={i} onClick={fn}
@@ -240,10 +256,12 @@ export default function PortfolioSection() {
                       </button>
                     ))}
                   </div>
-                  <button onClick={close}
-                    style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer" }}>
-                    ESC / Закрыть
-                  </button>
+                  {!isMobile && (
+                    <button onClick={close}
+                      style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer" }}>
+                      ESC / Закрыть
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>

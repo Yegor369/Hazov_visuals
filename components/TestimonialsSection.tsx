@@ -1,9 +1,9 @@
 "use client";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import WordReveal from "./WordReveal";
 import { useIsMobile } from "../hooks/useIsMobile";
 
-// DECISION: заменить на реальные отзывы когда появятся
 const reviews = [
   {
     text: "Заказывал лендинг для своей студии. Сделал за 4 дня — я даже не ожидал такого. Всё чисто, современно, без лишнего. Клиенты сразу начали писать через сайт.",
@@ -51,13 +51,52 @@ function Stars({ count }: { count: number }) {
   );
 }
 
+function ReviewCard({ r, i }: { r: typeof reviews[0]; i: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        padding: 28,
+        border: "1px solid rgba(255,255,255,0.07)",
+        background: "rgba(255,255,255,0.02)",
+        display: "flex", flexDirection: "column", gap: 20,
+        position: "relative", overflow: "hidden",
+        flexShrink: 0,
+      }}
+    >
+      <div style={{ position: "absolute", top: 0, left: 0, width: 32, height: 1, background: `linear-gradient(to right, ${r.color}, transparent)` }} />
+      <div style={{ position: "absolute", top: 0, left: 0, width: 1, height: 32, background: `linear-gradient(to bottom, ${r.color}, transparent)` }} />
+      <Stars count={r.stars} />
+      <p style={{ fontSize: 14, color: "#C8C8D4", lineHeight: 1.8, flex: 1 }}>«{r.text}»</p>
+      <div style={{ display: "flex", alignItems: "center", gap: 14, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: "50%", flexShrink: 0,
+          background: `linear-gradient(135deg, ${r.color}33, ${r.color}11)`,
+          border: `1px solid ${r.color}44`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 16, color: r.color,
+        }}>
+          {r.initial}
+        </div>
+        <div>
+          <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 14, color: "#F5F5F5" }}>{r.name}</p>
+          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: "#8A8A90", marginTop: 3, letterSpacing: "0.05em" }}>{r.role}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function TestimonialsSection() {
   const isMobile = useIsMobile();
+  const trackRef = useRef<HTMLDivElement>(null);
+
   return (
     <section style={{ padding: "7rem 0", position: "relative", zIndex: 1, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 4vw, 48px)" }}>
-
-        {/* Header */}
         <div style={{ marginBottom: "4rem" }}>
           <motion.p
             initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
@@ -67,58 +106,29 @@ export default function TestimonialsSection() {
           <WordReveal text="Что говорят клиенты" />
         </div>
 
-        {/* Grid 2×2 */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: 16 }}>
-          {reviews.map((r, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ borderColor: `${r.color}44`, backgroundColor: `${r.color}06` }}
-              style={{
-                padding: 36,
-                border: "1px solid rgba(255,255,255,0.07)",
-                background: "rgba(255,255,255,0.02)",
-                display: "flex", flexDirection: "column", gap: 24,
-                transition: "border-color 0.3s, background 0.3s",
-                position: "relative", overflow: "hidden",
-              }}
+        {isMobile ? (
+          /* Горизонтальный свайп на мобильном */
+          <>
+            <div
+              ref={trackRef}
+              style={{ display: "flex", gap: 12, overflowX: "auto", scrollSnapType: "x mandatory", scrollbarWidth: "none", paddingBottom: 4, marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}
             >
-              {/* Corner accent */}
-              <div style={{ position: "absolute", top: 0, left: 0, width: 32, height: 1, background: `linear-gradient(to right, ${r.color}, transparent)` }} />
-              <div style={{ position: "absolute", top: 0, left: 0, width: 1, height: 32, background: `linear-gradient(to bottom, ${r.color}, transparent)` }} />
-
-              {/* Stars */}
-              <Stars count={r.stars} />
-
-              {/* Quote */}
-              <p style={{ fontSize: 14, color: "#C8C8D4", lineHeight: 1.8, flex: 1 }}>
-                «{r.text}»
-              </p>
-
-              {/* Author */}
-              <div style={{ display: "flex", alignItems: "center", gap: 14, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                {/* Avatar */}
-                <div style={{
-                  width: 44, height: 44, borderRadius: "50%", flexShrink: 0,
-                  background: `linear-gradient(135deg, ${r.color}33, ${r.color}11)`,
-                  border: `1px solid ${r.color}44`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 16, color: r.color,
-                }}>
-                  {r.initial}
+              {reviews.map((r, i) => (
+                <div key={i} style={{ width: "85vw", scrollSnapAlign: "start", flexShrink: 0 }}>
+                  <ReviewCard r={r} i={i} />
                 </div>
-                <div>
-                  <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 14, color: "#F5F5F5", letterSpacing: "-0.01em" }}>{r.name}</p>
-                  <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: "#8A8A90", marginTop: 3, letterSpacing: "0.05em" }}>{r.role}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
+              ))}
+            </div>
+            <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em", marginTop: 16, textAlign: "center" }}>
+              ← листайте →
+            </p>
+          </>
+        ) : (
+          /* Сетка 2×2 на десктопе */
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+            {reviews.map((r, i) => <ReviewCard key={i} r={r} i={i} />)}
+          </div>
+        )}
       </div>
     </section>
   );

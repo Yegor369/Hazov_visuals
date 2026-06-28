@@ -69,7 +69,7 @@ export default function Navbar() {
 
         {/* Mobile burger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden flex flex-col gap-1.5 p-2 mr-1"
           onClick={() => setOpen(!open)}
           aria-label="Меню"
         >
