@@ -50,7 +50,7 @@ export default function ContactSection() {
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ADE80", display: "inline-block", boxShadow: "0 0 8px rgba(74,222,128,0.6)", animation: "blink 2s ease-in-out infinite" }} />
             <style>{`@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }`}</style>
             <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em" }}>
-              обычно отвечаю за 2 часа · @hazov_visuals
+              отвечу в течение 24 часов после заявки · @hazov_visuals
             </p>
           </div>
 

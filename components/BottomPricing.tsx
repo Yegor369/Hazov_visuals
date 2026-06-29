@@ -24,15 +24,6 @@ const rows = [
       { name: "Базовая ставка",  price: "220 ₽/сек", срок: null },
     ],
   },
-  {
-    category: "Автоматизация",
-    popular: false,
-    items: [
-      { name: "Telegram-бот",          price: "9 900 ₽",       срок: null },
-      { name: "Оптимизация TG-канала", price: "9 900 ₽",       срок: null },
-      { name: "Автоматизация",         price: "от 14 900 ₽",   срок: null },
-    ],
-  },
 ];
 
 export default function BottomPricing() {

@@ -6,7 +6,7 @@ const stats = [
   { value: 27, suffix: "+", label: "проектов\nсдано" },
   { value: 3,  suffix: " дня", label: "средний срок\nлендинга" },
   { value: 100, suffix: "%", label: "клиентов\nвозвращаются" },
-  { value: 2,  suffix: " часа", label: "среднее время\nответа" },
+  { value: 24,  suffix: " часа", label: "время ответа\nпосле заявки" },
 ];
 
 function Counter({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
